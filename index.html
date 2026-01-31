@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TerraByte Intelligence</title>
+  <meta name="description" content="TerraByte Intelligence builds practical AI systems for real-world understanding." />
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f1a33; --text:#e5e7eb; --muted:#9ca3af;
+      --brand:#a78bfa; --brand2:#22d3ee; --border:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:radial-gradient(900px 500px at 20% 10%, rgba(167,139,250,.22), transparent 55%),
+                 radial-gradient(900px 500px at 80% 20%, rgba(34,211,238,.18), transparent 55%),
+                 var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:28px 18px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.2px}
+    .dot{width:10px;height:10px;border-radius:50%;
+      background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 14px;border-radius:12px;border:1px solid var(--border);
+      text-decoration:none;background:rgba(255,255,255,.02);
+    }
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(167,139,250,.95), rgba(34,211,238,.85));
+      border:0;color:#06101b;font-weight:700;
+    }
+    .hero{padding:56px 0 26px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    h1{font-size:52px;line-height:1.05;margin:0 0 12px;letter-spacing:-.8px}
+    .lead{font-size:18px;line-height:1.6;color:var(--muted);margin:0 0 22px}
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;border-radius:999px;border:1px solid var(--border);
+      background:rgba(255,255,255,.02); color:var(--muted); font-size:13px;
+    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{
+      border:1px solid var(--border); border-radius:16px; padding:16px;
+      background:rgba(255,255,255,.02)
+    }
+    .card h3{margin:6px 0 8px;font-size:16px}
+    .card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+    .panel{
+      border:1px solid var(--border); border-radius:18px; padding:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      height:100%;
+    }
+    .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .kpi .box{border:1px solid var(--border);border-radius:14px;padding:12px;background:rgba(0,0,0,.15)}
+    .kpi .n{font-size:18px;font-weight:800}
+    .kpi .t{font-size:12px;color:var(--muted);margin-top:6px}
+    .section{padding:22px 0}
+    .section h2{margin:0 0 10px;font-size:22px}
+    .section .sub{margin:0;color:var(--muted);line-height:1.6}
+    .footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    input{
+      padding:12px 12px;border-radius:12px;border:1px solid var(--border);
+      background:rgba(255,255,255,.02);color:var(--text);min-width:240px;outline:none;
+    }
+    input::placeholder{color:rgba(156,163,175,.8)}
+    .note{font-size:12px;color:var(--muted);margin-top:8px}
+    .tag{font-size:12px;color:#06101b;font-weight:800; padding:6px 10px;border-radius:999px;
+      background:linear-gradient(135deg, rgba(167,139,250,.9), rgba(34,211,238,.85)); display:inline-block}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="logo"><span class="dot"></span> TerraByte Intelligence</div>
+      <div class="row">
+        <a class="btn" href="#work">What we build</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn primary" href="mailto:hello@terrabyte.ai">Email us</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div>
+        <div class="pill">🚀 Coming online • Building practical AI for real-world understanding</div>
+        <h1>AI that turns messy reality into reliable decisions.</h1>
+        <p class="lead">
+          TerraByte Intelligence develops AI systems for perception, reasoning, and automation—built to be safe,
+          scalable, and measurable in production.
+        </p>
+        <div class="row">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn" href="#work">See focus areas</a>
+        </div>
+
+        <div class="section" id="work">
+          <h2>Focus areas</h2>
+          <p class="sub">Three pillars that ship well as products: clarity, control, and cost efficiency.</p>
+          <div class="grid" style="margin-top:14px;">
+            <div class="card">
+              <span class="tag">Perception</span>
+              <h3>Multimodal understanding</h3>
+              <p>Vision + language pipelines for structured extraction, monitoring, and real-time analysis.</p>
+            </div>
+            <div class="card">
+              <span class="tag">Reasoning</span>
+              <h3>Decision support</h3>
+              <p>Tool-using agents and evaluation-first workflows that keep outputs verifiable.</p>
+            </div>
+            <div class="card">
+              <span class="tag">Automation</span>
+              <h3>Production integration</h3>
+              <p>APIs, dashboards, and human-in-the-loop systems that teams can trust.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin:0 0 8px;">Now building</h2>
+        <p class="sub" style="margin:0 0 14px;">
+          A lightweight, enterprise-ready foundation: clear metrics, safety guardrails, and fast iteration.
+        </p>
+        <div class="kpi">
+          <div class="box"><div class="n">Eval-first</div><div class="t">quality you can measure</div></div>
+          <div class="box"><div class="n">Secure</div><div class="t">privacy & access controls</div></div>
+          <div class="box"><div class="n">Scalable</div><div class="t">from demo to deployment</div></div>
+        </div>
+
+        <div class="section" id="contact">
+          <h2>Contact</h2>
+          <p class="sub">Tell us what you’re building. We’ll respond quickly.</p>
+
+          <!-- 纯静态页没后端，这里用 mailto 最省事 -->
+          <div class="row">
+            <a class="btn primary" href="mailto:hello@terrabyte.ai?subject=TerraByte%20Inquiry&body=Hi%20TerraByte%2C%0A%0AWe%20want%20to%20talk%20about%3A%0A%0A-%20%0A%0AThanks!">
+              ✉️ Email hello@terrabyte.ai
+            </a>
+            <a class="btn" href="https://github.com/stanwyla">GitHub</a>
+          </div>
+
+          <p class="note">Tip: later you can replace “mailto” with a real form (Google Forms / Formspree / Netlify Forms).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      © <span id="y"></span> TerraByte Intelligence • Built with GitHub Pages
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
