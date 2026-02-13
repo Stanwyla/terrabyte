@@ -20,8 +20,7 @@
     }
     a{color:inherit}
     .container{max-width:1200px;margin:0 auto;padding:16px 18px}
-    .logo-img{width:80px;height:80px;object-fit:contain;display:block;}
-
+    .logo-img{width:120px;height:120px;object-fit:contain;display:block;}
     .dot{width:10px;height:10px;border-radius:50%;
       background:linear-gradient(135deg,var(--brand),var(--brand2))}
     .btn{
@@ -156,6 +155,267 @@
   color: #fff;
 }
 
+    /* ===== Carousel (Style C: center card + peek) ===== */
+    .carousel-section{ padding: 8px 0 8px; }
+    .carousel-wrap{ position: relative; border-radius: 18px; padding: 24px 0 0; overflow: hidden; margin-top:18px; }
+
+    .carousel-title{
+      position:absolute;
+      top:36px;
+      left:0;
+      right:0;
+      z-index:7;
+      margin:0;
+      pointer-events:none;
+    }
+    .carousel-title > div{
+      margin-left: calc((100% - min(960px, 96vw))/2 + 16px);
+    }
+    .carousel-title h2{
+      margin:0;
+      font-size:34px;
+      color:#fff;
+      letter-spacing:-.5px;
+      text-shadow:
+        0 2px 6px rgba(0,0,0,.55),
+        0 8px 20px rgba(0,0,0,.45),
+        0 16px 36px rgba(0,0,0,.35);
+    }
+    .carousel-title p{
+      margin:2px 0 0;
+      color:rgba(255,255,255,.92);
+      font-size:13px;
+      text-shadow:
+        0 1px 4px rgba(0,0,0,.5),
+        0 5px 14px rgba(0,0,0,.35);
+    }
+
+    /* reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in{ opacity:1; transform: translateY(0); }
+
+    .carousel-stage{ position: relative; width: 100%; }
+
+    /* horizontal track */
+    .carousel-track{
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+
+      /* fallback padding for peek */
+      padding: 0 8vw 40px;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar{ display:none; }
+
+    /* precise center padding when supported */
+    @supports (padding: calc((100% - min(960px, 96vw))/2)) {
+      .carousel-track{
+        padding-left: calc((100% - min(960px, 96vw))/2);
+        padding-right: calc((100% - min(960px, 96vw))/2);
+      }
+    }
+
+    .carousel-card{
+      position: relative;
+      flex: 0 0 min(960px, 96vw);
+      height: 540px;
+      border-radius: 22px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: 0 18px 50px rgba(15, 26, 51, .14);
+      scroll-snap-align: center;
+
+      transform: scale(.92);
+      opacity: .86;
+      transition: transform .25s ease, opacity .25s ease, box-shadow .25s ease;
+    }
+    .carousel-card.is-active{
+      transform: scale(1);
+      opacity: 1;
+      box-shadow: 0 22px 60px rgba(15, 26, 51, .18);
+    }
+
+    .carousel-card .img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+    }
+
+    .carousel-card .overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.35));
+    }
+
+    .carousel-card .meta{
+      position:absolute; left:16px; right:16px; bottom:14px;
+      color:#fff;
+    }
+
+    .carousel-card .meta .k{ font-weight:800; letter-spacing:-.2px; font-size:18px; }
+    .carousel-card .meta .d{ margin-top:6px; font-size:13px; opacity:.9; line-height:1.45; }
+
+    .carousel-controls{
+      position:absolute;
+      left: 14px; right: 14px; bottom: 14px;
+      display:flex; align-items:center; justify-content:space-between;
+      pointer-events:none;
+    }
+
+    .carousel-btn{
+      pointer-events:auto;
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(10px) saturate(140%);
+      -webkit-backdrop-filter: blur(10px) saturate(140%);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+    }
+
+    .carousel-dots{ pointer-events:auto; display:flex; gap:8px; align-items:center; }
+
+    .carousel-dot{
+      width:8px; height:8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.55);
+      background: rgba(255,255,255,.35);
+      cursor:pointer;
+    }
+
+    .carousel-dot.active{
+      background: linear-gradient(135deg, #4f0f0f, #f69749);
+      border: 0;
+      width: 18px;
+    }
+
+    @media (max-width: 900px){
+      .carousel-title{ top:18px; }
+      .carousel-title > div{ margin-left: calc((100% - min(960px, 96vw))/2 + 10px); }
+      .carousel-title h2{ font-size:26px; }
+      .carousel-title p{ font-size:12px; }
+      .carousel-card{ height: 420px; }
+      .carousel-track{ padding: 0 2vw 36px; }
+    }
+
+    .action-labeling{
+      margin-top: 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+
+    .action-media{
+      min-height: 560px;
+    }
+
+    .action-media img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .action-content{
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .action-content h2{
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: -.4px;
+    }
+
+    .action-placeholder-title{
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .action-placeholder-desc{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .gear-collecting{
+      margin-top: 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+
+    .gear-content{
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .gear-content h2{
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: -.4px;
+    }
+
+    .gear-media{
+      min-height: 560px;
+    }
+
+    .gear-media img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    @media (max-width: 900px){
+      .action-labeling{
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .action-media{
+        min-height: 360px;
+      }
+      .action-content{
+        padding: 28px 20px 30px;
+      }
+      .action-content h2{
+        font-size: 28px;
+      }
+      .action-placeholder-title{
+        font-size: 21px;
+      }
+      .gear-collecting{
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .gear-content{
+        padding: 28px 20px 30px;
+      }
+      .gear-content h2{
+        font-size: 28px;
+      }
+      .gear-media{
+        min-height: 360px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -239,21 +499,251 @@
             <a class="btn primary" href="mailto:zhenyu@terrabyteintelligence.com?subject=TerraByte%20Inquiry&body=Hi%20TerraByte%2C%0A%0AWe%20want%20to%20talk%20about%3A%0A%0A-%20%0A%0AThanks!">
               ✉️ Email zhenyu@terrabyteintelligence.com
             </a>
-            <a class="btn" href="https://github.com/stanwyla">GitHub</a>
           </div>
 
-          <p class="note">Tip: Click on the Pixel Bear!</p>
+          <p class="note">
+            <h3>Tip: Click on the Pixel Bear!<h3>
+            </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Showcase Carousel (scroll down to reveal) -->
+    <div class="section carousel-section reveal" id="showcase">
+      <div class="carousel-wrap glass">
+        <div class="carousel-title">
+          <div>
+            <h2>Scenarios</h2>
+          </div>
+        </div>
+
+          <div class="carousel-stage" id="carouselStage" aria-label="Showcase carousel">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Use stable image URLs (static site friendly). Replace later with your own assets if you want. -->
+            <div class="carousel-card" data-title="Clothing Manufacturing" data-desc="Reachable workers and scalable workflows.">
+              <img class="img" alt="Clothing Manufacturing" src="assets/scenarios/Clothing%20Manufacturing.png" />
+              <div class="overlay"></div>
+              <div class="meta">
+                <div class="k">Clothing Manufacturing</div>
+
+              </div>
+            </div>
+
+            <div class="carousel-card" data-title="Fresh food processing" data-desc="On-site collection in real working scenarios.">
+              <img class="img" alt="Fresh food processing" src="assets/scenarios/Fresh%20food%20processing.png" />
+              <div class="overlay"></div>
+              <div class="meta">
+                <div class="k">Fresh food processing</div>
+
+              </div>
+            </div>
+
+            <div class="carousel-card" data-title="Hotel" data-desc="Fast labeling and QA for multimodal data.">
+              <img class="img" alt="Hotel" src="assets/scenarios/Hotel.jpg" />
+              <div class="overlay"></div>
+              <div class="meta">
+                <div class="k">Hotel</div>
+
+              </div>
+            </div>
+
+            <div class="carousel-card" data-title="Repair" data-desc="Tailored data specs for your robot stack.">
+              <img class="img" alt="Repair" src="assets/scenarios/Repair.jpg" />
+              <div class="overlay"></div>
+              <div class="meta">
+                <div class="k">Repair</div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-controls" aria-hidden="false">
+            <button class="carousel-btn" id="carouselPrev" type="button" aria-label="Previous">‹</button>
+            <div class="carousel-dots" id="carouselDots" aria-label="Carousel dots"></div>
+            <button class="carousel-btn" id="carouselNext" type="button" aria-label="Next">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section reveal" id="action-labeling">
+      <div class="action-labeling glass">
+        <div class="action-media">
+          <img src="assets/Howor/howor_cherry_1.png" alt="Action Labeling visual" />
+        </div>
+        <div class="action-content">
+          <h2>Action Labeling</h2>
+          <p class="action-placeholder-title">[待输入标题]</p>
+          <p class="action-placeholder-desc">[待输入介绍]</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section reveal" id="data-collecting-gear">
+      <div class="gear-collecting glass">
+        <div class="gear-content">
+          <h2>Data-Collecting Gear</h2>
+          <p class="action-placeholder-title">[待输入标题]</p>
+          <p class="action-placeholder-desc">[待输入介绍]</p>
+        </div>
+        <div class="gear-media">
+          <img src="assets/glasses/glasses_cutout_v2.png" alt="Data-Collecting Gear visual" />
         </div>
       </div>
     </div>
 
     <div class="footer">
-      © <span id="y"></span> TerraByte Intelligence • Built with GitHub Pages
+      © <span id="y"></span> TerraByte Intelligence • Built by Gary Dai
     </div>
   </div>
 
   <script>
+    // footer year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // ===== Reveal on scroll =====
+    (function(){
+      const revealEls = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if (e.isIntersecting) e.target.classList.add('in');
+        });
+      }, { threshold: 0.18 });
+      revealEls.forEach(el => io.observe(el));
+    })();
+
+    // ===== Carousel logic (Style C: center + peek) =====
+    (function(){
+      const stage = document.getElementById('carouselStage');
+      const track = document.getElementById('carouselTrack');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+      const dotsWrap = document.getElementById('carouselDots');
+      if (!stage || !track || !prevBtn || !nextBtn || !dotsWrap) return;
+
+      const cards = Array.from(track.querySelectorAll('.carousel-card'));
+      const n = cards.length;
+      if (n === 0) return;
+
+      let index = 0;
+
+      // When we call track.scrollTo({behavior:'smooth'}) we will temporarily ignore
+      // scroll-driven index updates to avoid dots “twitching”.
+      let isAutoScrolling = false;
+      let autoTimer = null;
+
+      const clamp = (i) => Math.max(0, Math.min(n - 1, i));
+
+      // build dots
+      const dots = cards.map((_, i)=>{
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', `Go to slide ${i+1}`);
+        d.addEventListener('click', ()=>scrollToIndex(i));
+        dotsWrap.appendChild(d);
+        return d;
+      });
+
+      function setActive(i){
+        index = clamp(i);
+        cards.forEach((c, k)=>c.classList.toggle('is-active', k === index));
+        dots.forEach((d, k)=>d.classList.toggle('active', k === index));
+
+        // disable buttons at ends to communicate “no wrap”
+        prevBtn.disabled = (index === 0);
+        nextBtn.disabled = (index === n - 1);
+        prevBtn.style.opacity = prevBtn.disabled ? '.45' : '1';
+        nextBtn.style.opacity = nextBtn.disabled ? '.45' : '1';
+      }
+
+      function cardCenterLeft(i){
+        const card = cards[i];
+        return card.offsetLeft - (track.clientWidth - card.clientWidth)/2;
+      }
+
+      function beginAutoScroll(){
+        isAutoScrolling = true;
+        if (autoTimer) clearTimeout(autoTimer);
+        // give smooth scrolling time to settle
+        autoTimer = setTimeout(()=>{ isAutoScrolling = false; }, 520);
+      }
+
+      function scrollToIndex(i){
+        const target = clamp(i);
+        setActive(target);
+        beginAutoScroll();
+        track.scrollTo({ left: cardCenterLeft(index), behavior: 'smooth' });
+      }
+
+      function nearestIndex(){
+        const center = track.scrollLeft + track.clientWidth/2;
+        let bestI = 0, bestD = Infinity;
+        cards.forEach((card, i)=>{
+          const c = card.offsetLeft + card.clientWidth/2;
+          const d = Math.abs(center - c);
+          if (d < bestD) { bestD = d; bestI = i; }
+        });
+        return bestI;
+      }
+
+      function updateByScroll(){
+        if (isAutoScrolling) return;
+        const ni = nearestIndex();
+        if (ni !== index) setActive(ni);
+      }
+
+      // buttons (no wrap)
+      prevBtn.addEventListener('click', ()=>{ if (index > 0) scrollToIndex(index - 1); });
+      nextBtn.addEventListener('click', ()=>{ if (index < n - 1) scrollToIndex(index + 1); });
+
+      // drag to scroll (desktop + touch)
+      let isDown = false, startX = 0, startLeft = 0;
+      track.addEventListener('pointerdown', (e)=>{
+        isDown = true;
+        startX = e.clientX;
+        startLeft = track.scrollLeft;
+        track.setPointerCapture?.(e.pointerId);
+      });
+      track.addEventListener('pointermove', (e)=>{
+        if (!isDown) return;
+        track.scrollLeft = startLeft - (e.clientX - startX);
+      });
+      function endDrag(){
+        if (!isDown) return;
+        isDown = false;
+        // snap to nearest card cleanly
+        const ni = nearestIndex();
+        scrollToIndex(ni);
+      }
+      track.addEventListener('pointerup', endDrag);
+      track.addEventListener('pointercancel', endDrag);
+
+      // update active while user scrolls (but not during auto scroll)
+      let ticking = false;
+      track.addEventListener('scroll', ()=>{
+        if (isAutoScrolling) return;
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(()=>{ updateByScroll(); ticking = false; });
+      }, { passive: true });
+
+      // keyboard
+      stage.setAttribute('tabindex','0');
+      stage.addEventListener('keydown', (e)=>{
+        if (e.key === 'ArrowLeft' && index > 0) scrollToIndex(index - 1);
+        if (e.key === 'ArrowRight' && index < n - 1) scrollToIndex(index + 1);
+      });
+
+      // init
+      setActive(0);
+      requestAnimationFrame(()=>scrollToIndex(0));
+      window.addEventListener('resize', ()=>requestAnimationFrame(()=>scrollToIndex(index)));
+    })();
   </script>
 </body>
 </html>
